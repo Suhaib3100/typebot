@@ -1,0 +1,96 @@
+{
+  "version": "6",
+  "id": "clyoehfmp0007grw9ubdop6u0",
+  "name": "Sub bot",
+  "events": [
+    {
+      "id": "clauup2lh0002vs1a5ei32mmi",
+      "outgoingEdgeId": "clauupl9n001b3b6qdk4czgom",
+      "graphCoordinates": { "x": 0, "y": 0 },
+      "type": "start"
+    }
+  ],
+  "groups": [
+    {
+      "id": "clauupd6q00183b6qcm8qbz62",
+      "title": "Group #1",
+      "graphCoordinates": { "x": 375.36328125, "y": 167.2578125 },
+      "blocks": [
+        {
+          "id": "clauupd6q00193b6qhegmlnxj",
+          "type": "text",
+          "content": {
+            "richText": [
+              {
+                "type": "p",
+                "children": [
+                  { "text": "How would you rate the experience so far?" }
+                ]
+              }
+            ]
+          }
+        },
+        {
+          "id": "clauupk97001a3b6q2w9qqkec",
+          "type": "rating input",
+          "options": {
+            "buttonType": "Numbers",
+            "length": 10,
+            "labels": { "button": "Send" },
+            "customIcon": { "isEnabled": false }
+          }
+        }
+      ]
+    }
+  ],
+  "edges": [
+    {
+      "id": "clauupl9n001b3b6qdk4czgom",
+      "from": { "eventId": "clauup2lh0002vs1a5ei32mmi" },
+      "to": { "groupId": "clauupd6q00183b6qcm8qbz62" }
+    }
+  ],
+  "variables": [],
+  "theme": {
+    "general": { "font": "Open Sans", "background": { "type": "None" } },
+    "chat": {
+      "hostAvatar": {
+        "isEnabled": true,
+        "url": "https://avatars.githubusercontent.com/u/16015833?v=4"
+      },
+      "hostBubbles": { "backgroundColor": "#F7F8FF", "color": "#303235" },
+      "guestBubbles": { "backgroundColor": "#FF8E21", "color": "#FFFFFF" },
+      "buttons": { "backgroundColor": "#0042DA", "color": "#FFFFFF" },
+      "inputs": {
+        "backgroundColor": "#FFFFFF",
+        "color": "#303235",
+        "placeholderColor": "#9095A0"
+      }
+    }
+  },
+  "selectedThemeTemplateId": null,
+  "settings": {
+    "general": {
+      "isBrandingEnabled": false,
+      "isInputPrefillEnabled": true,
+      "isHideQueryParamsEnabled": true,
+      "isNewResultOnRefreshEnabled": false
+    },
+    "typingEmulation": { "enabled": true, "speed": 300, "maxDelay": 1.5 },
+    "metadata": {
+      "description": "Build beautiful conversational forms and embed them directly in your applications without a line of code. Triple your response rate and collect answers that has more value compared to a traditional form."
+    }
+  },
+  "createdAt": "2024-07-16T12:39:21.697Z",
+  "updatedAt": "2024-07-16T12:39:21.697Z",
+  "icon": "👶",
+  "folderId": null,
+  "publicId": null,
+  "customDomain": null,
+  "workspaceId": "proWorkspace",
+  "resultsTablePreferences": null,
+  "isArchived": false,
+  "isClosed": false,
+  "whatsAppCredentialsId": null,
+  "riskLevel": null
+}

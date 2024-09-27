@@ -1,0 +1,28 @@
+{
+  "name": "@typebot.io/forge-repository",
+  "type": "module",
+  "private": true,
+  "exports": {
+    "./*": "./src/*.ts"
+  },
+  "dependencies": {
+    "@typebot.io/zod": "workspace:*",
+    "@typebot.io/openai-block": "workspace:*",
+    "@typebot.io/cal-com-block": "workspace:*",
+    "@typebot.io/chat-node-block": "workspace:*",
+    "@typebot.io/qrcode-block": "workspace:*",
+    "@typebot.io/dify-ai-block": "workspace:*",
+    "@typebot.io/mistral-block": "workspace:*",
+    "@typebot.io/elevenlabs-block": "workspace:*",
+    "@typebot.io/anthropic-block": "workspace:*",
+    "@typebot.io/together-ai-block": "workspace:*",
+    "@typebot.io/open-router-block": "workspace:*",
+    "@typebot.io/nocodb-block": "workspace:*",
+    "@typebot.io/segment-block": "workspace:*",
+    "@typebot.io/groq-block": "workspace:*",
+    "@typebot.io/zendesk-block": "workspace:*"
+  },
+  "devDependencies": {
+    "@typebot.io/tsconfig": "workspace:*"
+  }
+}

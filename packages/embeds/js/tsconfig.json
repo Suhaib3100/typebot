@@ -1,0 +1,15 @@
+{
+  "extends": "@typebot.io/tsconfig/base.json",
+  "include": ["src/**/*.ts", "src/**/*.tsx"],
+  "compilerOptions": {
+    "baseUrl": ".",
+    "paths": {
+      "@/*": ["src/*"]
+    },
+    "jsx": "preserve",
+    "jsxImportSource": "solid-js",
+    "outDir": "dist",
+    "declaration": true,
+    "declarationMap": true
+  }
+}

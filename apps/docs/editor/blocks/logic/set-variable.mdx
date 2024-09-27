@@ -1,0 +1,205 @@
+---
+title: Set variable
+icon: pen
+---
+
+import { YoutubeVideo } from '/snippets/youtube-video.mdx'
+
+The "Set variable" block allows you to set a particular value to a variable.
+
+<Frame>
+  <img src="/images/blocks/logic/set-variable.png" alt="Set variable" />
+</Frame>
+
+## Custom
+
+You can set your variable with any value with `Custom`. It can be any kind of plain text but also **Javascript code**.
+
+### Expressions with existing variables
+
+It means you can apply operations on existing variables.
+
+Add a value to your variable:
+
+```
+{{Score}} + 5
+```
+
+Compute a sum of variables:
+
+```
+{{Score}} + {{Answer}}
+```
+
+Multiply variables together:
+
+```
+{{Score}} * {{Multiplier}}
+```
+
+Compute a percentage:
+
+```
+{{Score}} * 100 / {{Max Score}}
+```
+
+Extract the first name from a full name:
+
+```
+{{Full name}}.split(' ')[0]
+```
+
+Transform existing variable to upper case or lower case:
+
+```
+{{Name}}.toUpperCase()
+```
+
+```
+{{Name}}.toLowerCase()
+```
+
+This can also be Javascript code. It will read the returned value of the code and set it to your variable.
+
+```js
+const name = 'John' + 'Smith'
+return name
+```
+
+If you don't provide the `return` keyword then it will be automatically prepended to the beginning of your code.
+
+```js
+'John' + 'Smith'
+```
+
+is the same as
+
+```js
+return 'John' + 'Smith'
+```
+
+<Info>
+Variables in script are not parsed, they are evaluated. So it should be treated as if it were real Javascript variables.
+
+So, if you write `"{{My variable}}"`, it will parse the variable ID (something like `vclfqgqkdf000008mh3r6xakty`). You need to remove the double quotes to properly get the variable content value.
+
+For example,
+
+- ❌ `"{{URL base}}/path"` => `vclfqgqkdf000008mh3r6xakty/path`
+- ✅ `{{URL base}} + '/path'` => `https://domain.com/path`
+- ✅ `` `${{{URL base}}}/path` `` => `https://domain.com/path`
+
+</Info>
+
+<Info>
+  Variables content can either be a string or a list of strings. Check out
+  [Valid value types](../../variables#valid-value-types) for more information.
+</Info>
+
+## Empty
+
+Resets your variable as if it was never initialized.
+
+## Append value(s)
+
+A conveniant value that automatically transform your variable into a list of strings. It will append the value(s) to the list.
+
+3 possible cases here:
+
+- If the variable is empty, it will create a new array with the provided value(s)
+- If the variable is not an array, it will create a new array with the existing value followed by the provided value(s).
+- If the variable is an array, it will concatenate the provided value(s) to the existing array.
+
+## Environment name
+
+This will set your variable with either `web` or `whatsapp` depending on the environment.
+
+## Transcript
+
+This preset value will save the entire conversation transcript in a variable. It is super useful to provide context to an AI block or to send it as a recap with the [Send email](../integrations/send-email) block.
+
+<YoutubeVideo id="OZLfiLp20f8" />
+
+## Result ID
+
+This will set your variable with the current result ID. The result ID is the ID that corresponds to a row of your [Results](../../../results/overview.mdx) table. It can be considered like a User ID for the currently chatting user.
+
+## Yesterday, Now, Tomorrow
+
+This will set your variable with the specified date and time in ISO format. You can optionally provide a time zone to convert the date to the specified time zone.
+
+## Random ID
+
+This will set your variable with a random ID with the CUID algorithm.
+
+## Moment of the day
+
+It will set your variable with either one of these values based on the user's time of the day: `morning`, `afternoon`, `evening`, `night`.
+
+Then you can use this variable to conditionally display content:
+
+<Frame style={{ maxWidth: '400px' }}>
+  <img
+    src="/images/blocks/logic/moment-condition.png"
+    alt="Moment of the day condition"
+  />
+</Frame>
+
+## Map item with same index
+
+This is a convenient value block that allows you to easily get an item from a list that has the same index as an item from another list.
+
+When you are pulling data from another service, sometimes, you will have 2 lists: `Labels` and `Ids`. Labels are the data displayed to the user and Ids are the data used for other requests to that external service.
+
+This value block allows you to find the `Id` from `Ids` with the same index as `Label` in `Labels`
+
+<Frame>
+  <img
+    src="/images/blocks/logic/set-variable-map-item.png"
+    alt="Set variable map item with same index"
+  />
+</Frame>
+
+## Phone number
+
+Only available in WhatsApp. This will set your variable with the user's phone number.
+
+## Contact name
+
+Only available in WhatsApp. This will set your variable with the user's name.
+
+## Save in results
+
+By default, new variables are not persisted in the [Results](../../../results) table. They are only stored for the current user chat session. Enabling this option will save the variable in the `Results` table.
+
+## Execute on client
+
+This option is useful when you want to execute the custom code on the client side. This is only necessary when you need access the user's browser information. So, if you need access to `window`, `document`, `navigator`, etc., you should enable this option.
+
+## Get user's geo location
+
+For this you can provide the following custom code:
+
+```js
+function getLocation() {
+  return new Promise((resolve) => {
+    navigator.geolocation.getCurrentPosition(
+      (position) =>
+        resolve(`${position.coords.latitude}, ${position.coords.longitude}`),
+      (error) => resolve('error'),
+      { enableHighAccuracy: true, timeout: 5000 }
+    )
+  })
+}
+
+const coords = await getLocation()
+
+// Check for error
+if (coords === 'error') {
+  return 'Unable to get location'
+}
+
+return coords
+```
+
+This custom function can only work when it is executed on the client browser so you need to make sure to enable the "Execute on client" option.

@@ -1,0 +1,128 @@
+---
+title: OpenAI
+---
+
+import { LoomVideo } from '/snippets/loom-video.mdx'
+
+## Create chat completion
+
+With the OpenAI block, you can create a chat completion based on your user queries and display the answer back to your typebot.
+
+<Frame>
+  <img
+    src="/images/blocks/integrations/openai/overview.png"
+    alt="OpenAI block"
+  />
+</Frame>
+
+This integration comes with a convenient message type called **Dialogue**. It allows you to easily pass a sequence of saved assistant / user messages history to OpenAI:
+
+<Frame>
+  <img
+    src="/images/blocks/integrations/openai/append-to-history.png"
+    alt="OpenAI messages sequence"
+  />
+</Frame>
+
+Then you can give the OpenAI block access to this sequence of messages:
+
+<Frame>
+  <img
+    src="/images/blocks/integrations/openai/dialogue-usage.png"
+    alt="OpenAI messages sequence"
+  />
+</Frame>
+
+### Tools
+
+The tools section allows you to add functions that the OpenAI model can execute. Here is an example of a function named `getWeather` that returns 'Sunny and warm' if you ask about the weather of Paris and 'Rainy and cold' if you ask for any other city 😂.
+
+A more useful example would be, of course, to call an API to get the weather of the city the user is asking about.
+
+<Frame>
+  <img src="/images/blocks/integrations/openai/tools.png" alt="OpenAI tools" />
+</Frame>
+
+As you can see, the code block expects the body of the Javascript function. You should use the `return` keyword to return value to give back to OpenAI as the result of the function.
+
+If you'd like to set variables directly in this code block, you can use the [`setVariable` function](../logic/script#setvariable-function).
+
+<Warning>
+  A function is executed on the server so it comes with [some limitations listed
+  here](../logic/script#limitations-on-scripts-executed-on-server).
+</Warning>
+
+## Ask assistant
+
+This action allows you to talk with your [OpenAI assistant](https://platform.openai.com/assistants). All you have to do is to provide its ID.
+
+In order for your block to remember the conversation history, you need to provide a `Thread ID` variable. If the variable is empty, it will create a new thread and automatically save the new thread ID in the variable.
+
+<LoomVideo id="daa20fcc5984472a875a3ad4d3fc2a3a" />
+
+### Functions
+
+If you defined functions in your assistant, you can define the function to execute in the `Functions` section.
+
+## Create speech
+
+This action allows you to transform a text input into an audio URL that you can reuse in your bot.
+
+:::note
+The generated audio URLs are temporary and expire after 7 days. If you need to store them, make sure to download them before they expire.
+:::
+
+<LoomVideo id="ccca6cbf16ed4d01b513836775db06a3" />
+
+## Create transcription
+
+This action allows you to transcribe a audio URL into text.
+
+## Generate variables
+
+This action allows you to set variables based on a prompt.
+
+Let's you want to want to extract a specific bit of information based on user's last message. You could use this block action to extract for example his name. To do that you could add the following prompt:
+
+```txt
+Extract user's information from user's last message: "{{Last message}}"
+```
+
+This you could provide for example the following variables: `Name`, `Email`
+
+If the `Last Message` variable is set to "My name is John and my email is john@gmail.com", then the `Name` and `Email` variables will be set to `John` and `john@gmail.com` respectively.
+
+## Using Multiple Open AI Blocks: Tips and Tricks
+
+In this video, I discuss some important things to keep in mind when using multiple Open AI blocks consecutively. I provide an example where we ask the user for a topic, generate a summary, and display a list of authors.
+
+I explain that streaming messages is not possible when they are prefixed or suffixed by text, and that all blocks need to compute before displaying anything.
+
+I also demonstrate how formatting can be affected by the presence of text before a message. Watch this video to learn how to optimize your use of multiple Open AI blocks.
+
+<LoomVideo id="35dc8af6b9244762acc4a5acf275fb43" />
+
+## Vision support
+
+`Create Chat Message` and `Ask Assistant` blocks support vision. This means that Typebot automatically detects images URL in any user message provided to OpenAI and parse it. The URL needs to be isolated from the rest of the text message to be properly detected. Here is an example of a message with an image URL:
+
+If the selected model is [not compatible with vision](https://platform.openai.com/docs/models), the image URL will be parsed as a plain text message.
+
+```
+What's in this picture?
+
+https://domain.com/image.png
+```
+
+## Troobleshooting
+
+### Error message: "OpenAI block returned error"
+
+It means your OpenAI block is not configured properly. Please check the following:
+
+- You have selected an OpenAI account
+- You have at least 1 **user** message or a **Dialogue** message set up.
+
+### It returns an empty message
+
+It most likely mean that you exceeded your OpenAI free quota. Add a payment method to your OpenAI account to continue using it.

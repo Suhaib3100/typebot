@@ -1,0 +1,19 @@
+{
+  "name": "@typebot.io/dify-ai-block",
+  "version": "1.0.0",
+  "private": true,
+  "type": "module",
+  "exports": {
+    ".": "./src/index.ts",
+    "./schemas": "./src/schemas.ts"
+  },
+  "dependencies": {
+    "ai": "3.3.15",
+    "ky": "1.2.4",
+    "@typebot.io/forge": "workspace:*",
+    "@typebot.io/lib": "workspace:*"
+  },
+  "devDependencies": {
+    "@typebot.io/tsconfig": "workspace:*"
+  }
+}

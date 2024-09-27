@@ -1,0 +1,257 @@
+{
+  "version": "6",
+  "id": "clyoep429000dgrw904vfzaez",
+  "name": "My typebot",
+  "events": [
+    {
+      "id": "cl9ip9u0j0000d71a5d98gwni",
+      "outgoingEdgeId": "cl9ipkkb2001b3b6oh3vptq9k",
+      "graphCoordinates": { "x": 0, "y": 0 },
+      "type": "start"
+    }
+  ],
+  "groups": [
+    {
+      "id": "cl9ipa38j00083b6o69e90m4t",
+      "title": "Group #1",
+      "graphCoordinates": { "x": 340, "y": 341 },
+      "blocks": [
+        {
+          "id": "cl9ipaaut000a3b6ovrqlec3x",
+          "type": "text input",
+          "options": {
+            "labels": { "placeholder": "Type a name...", "button": "Send" },
+            "variableId": "vcl9ipajth000c3b6okl97r81j",
+            "isLong": false
+          }
+        },
+        {
+          "id": "cl9ipan8f000d3b6oo2ovi3ac",
+          "type": "number input",
+          "options": {
+            "variableId": "vcl9ipaszl000e3b6ousjxuw7b",
+            "labels": { "placeholder": "Type an age...", "button": "Send" }
+          }
+        },
+        {
+          "id": "cl9ipb08n000f3b6ok3mi2p48",
+          "outgoingEdgeId": "cl9ipcp83000o3b6odsn0a9a1",
+          "type": "choice input",
+          "items": [
+            { "id": "cl9ipb08n000g3b6okr691uad", "content": "Male" },
+            { "id": "cl9ipb2kk000h3b6oadwtonnz", "content": "Female" }
+          ],
+          "options": {
+            "variableId": "vcl9ipg4tb00103b6oue08w3nm",
+            "isMultipleChoice": false,
+            "buttonLabel": "Send"
+          }
+        }
+      ]
+    },
+    {
+      "id": "cl9ipbcjy000j3b6oqngo7luv",
+      "title": "Group #2",
+      "graphCoordinates": { "x": 781, "y": 91 },
+      "blocks": [
+        {
+          "id": "cl9ipbl6l000m3b6o3evn41kv",
+          "type": "Set variable",
+          "options": {
+            "variableId": "vcl9ipbokm000n3b6o06hvarrf",
+            "expressionToEvaluate": "{\n  \"name\": \"John\",\n  \"age\": 25,\n  \"gender\": \"male\"\n}"
+          }
+        },
+        {
+          "id": "cl9ipbcjy000k3b6oe8lta5c1",
+          "type": "Webhook",
+          "options": {
+            "variablesForTest": [],
+            "responseVariableMapping": [
+              {
+                "id": "cl9ipdspg000p3b6ognbfvmdx",
+                "variableId": "vcl9ipdxnj000q3b6oy55th4xb",
+                "bodyPath": "data"
+              }
+            ],
+            "isAdvancedConfig": true,
+            "isCustomBody": true,
+            "webhook": {
+              "url": "http://localhost:3000/api/mock/webhook-easy-config",
+              "body": "{\n          \"name\": \"{{Name}}\",\n          \"age\": {{Age}},\n          \"gender\": \"{{Gender}}\"\n        }"
+            }
+          }
+        },
+        {
+          "id": "cl9ipe5t8000s3b6ocswre500",
+          "outgoingEdgeId": "cl9ipet83000z3b6of6zfqota",
+          "type": "text",
+          "content": {
+            "richText": [
+              {
+                "type": "p",
+                "children": [{ "text": "Data of first request:" }]
+              },
+              { "type": "p", "children": [{ "text": "" }] },
+              { "type": "p", "children": [{ "text": "{{Data}}" }] }
+            ]
+          }
+        }
+      ]
+    },
+    {
+      "id": "cl9ipej6b000u3b6oeaz305l6",
+      "title": "Group #2 copy",
+      "graphCoordinates": { "x": 1138, "y": 85 },
+      "blocks": [
+        {
+          "id": "cl9ipej6c000w3b6otzk247vl",
+          "type": "Webhook",
+          "options": {
+            "variablesForTest": [],
+            "responseVariableMapping": [
+              {
+                "id": "cl9ipdspg000p3b6ognbfvmdx",
+                "variableId": "vcl9ipdxnj000q3b6oy55th4xb",
+                "bodyPath": "data"
+              }
+            ],
+            "isAdvancedConfig": true,
+            "isCustomBody": true,
+            "webhook": {
+              "url": "http://localhost:3000/api/mock/webhook-easy-config",
+              "body": "{{Full body}}"
+            }
+          }
+        },
+        {
+          "id": "cl9ipej6c000y3b6oegzkgloq",
+          "type": "text",
+          "content": {
+            "richText": [
+              {
+                "type": "p",
+                "children": [{ "text": "Data of second request:" }]
+              },
+              { "type": "p", "children": [{ "text": "" }] },
+              { "type": "p", "children": [{ "text": "{{Data}}" }] }
+            ]
+          }
+        }
+      ]
+    },
+    {
+      "id": "cl9ipkaer00153b6ov230yuv2",
+      "title": "Group #4",
+      "graphCoordinates": { "x": 333, "y": 26 },
+      "blocks": [
+        {
+          "id": "cl9ipkaer00163b6o0ohmmscn",
+          "type": "choice input",
+          "items": [
+            {
+              "id": "cl9ipkaer00173b6oxof4zrqn",
+              "content": "Send failing webhook"
+            }
+          ],
+          "options": { "isMultipleChoice": false, "buttonLabel": "Send" }
+        },
+        {
+          "id": "cl9ipki9u00193b6okmhudo0f",
+          "outgoingEdgeId": "cl9ipklm0001c3b6oy0a5nbhr",
+          "type": "Webhook",
+          "options": {
+            "variablesForTest": [],
+            "responseVariableMapping": [],
+            "isAdvancedConfig": false,
+            "isCustomBody": false,
+            "webhook": { "url": "http://localhost:3001/api/mock/fail" }
+          }
+        }
+      ]
+    }
+  ],
+  "edges": [
+    {
+      "id": "cl9ipkkb2001b3b6oh3vptq9k",
+      "from": { "eventId": "cl9ip9u0j0000d71a5d98gwni" },
+      "to": { "groupId": "cl9ipkaer00153b6ov230yuv2" }
+    },
+    {
+      "id": "cl9ipcp83000o3b6odsn0a9a1",
+      "from": { "blockId": "cl9ipb08n000f3b6ok3mi2p48" },
+      "to": { "groupId": "cl9ipbcjy000j3b6oqngo7luv" }
+    },
+    {
+      "id": "cl9ipet83000z3b6of6zfqota",
+      "from": { "blockId": "cl9ipe5t8000s3b6ocswre500" },
+      "to": { "groupId": "cl9ipej6b000u3b6oeaz305l6" }
+    },
+    {
+      "id": "cl9ipklm0001c3b6oy0a5nbhr",
+      "from": { "blockId": "cl9ipki9u00193b6okmhudo0f" },
+      "to": { "groupId": "cl9ipa38j00083b6o69e90m4t" }
+    }
+  ],
+  "variables": [
+    {
+      "id": "vcl9ipajth000c3b6okl97r81j",
+      "name": "Name",
+      "isSessionVariable": true
+    },
+    {
+      "id": "vcl9ipaszl000e3b6ousjxuw7b",
+      "name": "Age",
+      "isSessionVariable": true
+    },
+    { "id": "vcl9ipbokm000n3b6o06hvarrf", "name": "Full body" },
+    { "id": "vcl9ipdxnj000q3b6oy55th4xb", "name": "Data" },
+    {
+      "id": "vcl9ipg4tb00103b6oue08w3nm",
+      "name": "Gender",
+      "isSessionVariable": true
+    }
+  ],
+  "theme": {
+    "general": { "font": "Open Sans", "background": { "type": "None" } },
+    "chat": {
+      "hostAvatar": {
+        "isEnabled": true,
+        "url": "https://avatars.githubusercontent.com/u/16015833?v=4"
+      },
+      "hostBubbles": { "backgroundColor": "#F7F8FF", "color": "#303235" },
+      "guestBubbles": { "backgroundColor": "#FF8E21", "color": "#FFFFFF" },
+      "buttons": { "backgroundColor": "#0042DA", "color": "#FFFFFF" },
+      "inputs": {
+        "backgroundColor": "#FFFFFF",
+        "color": "#303235",
+        "placeholderColor": "#9095A0"
+      }
+    }
+  },
+  "selectedThemeTemplateId": null,
+  "settings": {
+    "general": {
+      "isBrandingEnabled": false,
+      "isInputPrefillEnabled": true,
+      "isHideQueryParamsEnabled": true,
+      "isNewResultOnRefreshEnabled": false
+    },
+    "typingEmulation": { "enabled": true, "speed": 300, "maxDelay": 1.5 },
+    "metadata": {
+      "description": "Build beautiful conversational forms and embed them directly in your applications without a line of code. Triple your response rate and collect answers that has more value compared to a traditional form."
+    }
+  },
+  "createdAt": "2024-07-16T12:45:19.954Z",
+  "updatedAt": "2024-07-16T12:46:27.462Z",
+  "icon": null,
+  "folderId": null,
+  "publicId": null,
+  "customDomain": null,
+  "workspaceId": "proWorkspace",
+  "resultsTablePreferences": null,
+  "isArchived": false,
+  "isClosed": false,
+  "whatsAppCredentialsId": null,
+  "riskLevel": null
+}

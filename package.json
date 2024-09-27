@@ -1,0 +1,57 @@
+{
+  "name": "root",
+  "version": "2.28.2",
+  "private": true,
+  "workspaces": [
+    "packages/*",
+    "packages/deprecated/*",
+    "packages/embeds/*",
+    "packages/forge/*",
+    "packages/forge/blocks/*",
+    "packages/blocks/*",
+    "apps/*"
+  ],
+  "scripts": {
+    "prepare": "husky",
+    "pre-commit": "bun format-and-lint && bun lint-repo",
+    "format-and-lint": "biome check .",
+    "format-and-lint:fix": "biome check . --write",
+    "lint-repo": "sherif -r unordered-dependencies -r packages-without-package-json",
+    "lint-repo:fix": "bun lint-repo --fix",
+    "patch-embed-libs": "bun packages/scripts/src/patchEmbedLibs.ts",
+    "start-docker-compose-dev": "docker compose -f docker-compose.dev.yml up",
+    "build-docker-compose-prod": "docker compose -f docker-compose.build.yml build",
+    "start-docker-compose-prod": "docker compose -f docker-compose.yml up",
+    "build": "turbo build --filter=builder... --filter=viewer... --filter=landing-page...",
+    "dev": "turbo dev --filter=builder... --filter=viewer...",
+    "generate-change-log": "git fetch --all && bunx gitmoji-changelog",
+    "sync-locales": "tolgee sync --continue-on-warning --remove-unused --patterns './apps/builder/src/**/*.ts?(x)' --backup './.tolgee/backup'",
+    "pull-locales": "tolgee pull && prettier --write ./apps/builder/src/i18n",
+    "create-new-block": "cd packages/forge/cli && bun start",
+    "check-unused-dependencies": "bun packages/scripts/src/checkDependencies.ts"
+  },
+  "devDependencies": {
+    "@biomejs/biome": "1.9.2",
+    "@tolgee/cli": "2.1.7",
+    "husky": "9.1.6",
+    "sherif": "1.0.0",
+    "turbo": "2.1.2",
+    "typescript": "5.6.2"
+  },
+  "packageManager": "bun@1.1.29",
+  "engines": {
+    "node": "20.17.0"
+  },
+  "trustedDependencies": [
+    "@biomejs/biome",
+    "@prisma/client",
+    "@prisma/engines",
+    "@sentry/cli",
+    "@swc/core",
+    "core-js",
+    "esbuild",
+    "isolated-vm",
+    "prisma",
+    "sharp"
+  ]
+}

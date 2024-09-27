@@ -1,0 +1,23 @@
+{
+  "name": "@typebot.io/playwright",
+  "type": "module",
+  "private": true,
+  "exports": {
+    "./*": "./src/*.ts"
+  },
+  "dependencies": {
+    "@playwright/test": "1.45.2",
+    "@typebot.io/blocks-core": "workspace:*",
+    "@typebot.io/blocks-inputs": "workspace:*",
+    "@typebot.io/env": "workspace:*",
+    "@typebot.io/lib": "workspace:*",
+    "@typebot.io/prisma": "workspace:*",
+    "@typebot.io/schemas": "workspace:*",
+    "@typebot.io/typebot": "workspace:*",
+    "@typebot.io/workspaces": "workspace:*"
+  },
+  "devDependencies": {
+    "@types/node": "20.4.2",
+    "@typebot.io/tsconfig": "workspace:*"
+  }
+}

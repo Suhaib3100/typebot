@@ -1,0 +1,14 @@
+Dockerfile
+.dockerignore
+**/node_modules
+npm-debug.log
+README.md
+**/.next
+.git
+.github
+.turbo
+**/.env
+landing-page
+docs
+packages/scripts
+wordpress
